@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import {MasterBankService} from '../../../services/master-bank/master-bank.service';
+import {Component, OnInit} from '@angular/core';
 import {MatSnackBar} from '@angular/material';
 import {errorSnackBar, successSnackBar} from '../../../shared/constants';
+import {BankService} from '../../../services/bank.service';
+import {bankErrorStateMatchers, bankForm} from '../../../inits/bank-init';
 
 @Component({
   selector: 'app-master-bank',
@@ -10,20 +11,22 @@ import {errorSnackBar, successSnackBar} from '../../../shared/constants';
 })
 export class MasterBankComponent implements OnInit {
 
-  data: any;
-  no_rek: any;
-  id_client: any;
-  nama_bank: any;
+  page = 0;
+  size = 10;
 
-  constructor(private masterBank: MasterBankService,
+
+  matchers = bankErrorStateMatchers;
+  formUtama = bankForm();
+
+  constructor(private masterBank: BankService,
               public snackBar: MatSnackBar) { }
 
   ngOnInit() {
 
   }
 
-  add(a) {
-    this.masterBank.add(a).subscribe(
+  post(a) {
+    this.masterBank.post(a).subscribe(
       (status) => {
         successSnackBar('this.snack');
         this.get();
@@ -33,24 +36,13 @@ export class MasterBankComponent implements OnInit {
   }
 
   get() {
-    this.masterBank.get().subscribe(
+    this.masterBank.getAll(this.page, this.size).subscribe(
       (v: any[]) => {
-        this.data = v;
-
+        console.log(v)
       },
       (error1) => errorSnackBar(this.snackBar, 'GAGAL'),
       () => {
       }
-    );
-  }
-
-  edit(id, a) {
-    this.masterBank.edit(id, a).subscribe(
-      (status) => {
-        successSnackBar('this.snack');
-        this.get();
-      },
-      (e) =>errorSnackBar(this.snackBar, 'GAGAL'),
     );
   }
 
@@ -64,26 +56,5 @@ export class MasterBankComponent implements OnInit {
     );
   }
 
-  saveButton(){
-    const a = {
-      no_rek: this.no_rek,
-      id_client: this.id_client,
-      nama_bank: this.nama_bank
-    };
-    if (a.no_rek === undefined || a.nama_bank === undefined || a.id_client === undefined) {
-      this.snackBar.open("Ada Field Kosong !", '', {
-        duration: 1000,
-        panelClass: ['warning-snackbar']
-      });
-      return;
-    }
-    this.add(a);
-   this.clearAll();
-  }
 
-  clearAll() {
-    this.no_rek = undefined;
-    this.id_client = undefined;
-    this.nama_bank = undefined;
-  }
 }

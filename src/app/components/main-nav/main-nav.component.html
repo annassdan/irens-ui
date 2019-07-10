@@ -20,7 +20,7 @@
       <mat-icon matSuffix>arrow_drop_down</mat-icon>
     </button>
     <mat-menu #user="matMenu">
-      <button mat-menu-item (click)="logout()">
+      <button mat-menu-item>
         <mat-icon>close</mat-icon>
         Logout
       </button>
@@ -40,9 +40,8 @@
 <mat-tab-group mat-align-tabs="start" backgroundColor="#f3e5f5" id="master" [hidden]="!background[1]">
   <mat-tab label="Master Barang"><app-master-barang></app-master-barang></mat-tab>
   <mat-tab label="Master Bank"><app-master-bank></app-master-bank></mat-tab>
-  <mat-tab label="Master Supplier"><app-master-supplier></app-master-supplier></mat-tab>
-  <mat-tab label="Master Pembeli"><app-master-buyer></app-master-buyer></mat-tab>
-  <mat-tab label="Master Pekerja"><app-master-pekerja></app-master-pekerja></mat-tab>
+  <mat-tab label="Master Pelanggan"><app-master-buyer></app-master-buyer></mat-tab>
+  <mat-tab label="Master Gudang"><app-master-pekerja></app-master-pekerja></mat-tab>
 </mat-tab-group>
 
 <router-outlet>
