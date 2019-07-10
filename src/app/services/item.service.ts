@@ -16,7 +16,7 @@ export class ItemService {
 
   getById = (id) => this.http.get(`${apiHost}${apis.item.getById}/${id}`);
 
-  getAll = (page, size) => this.http.delete(`${apiHost}${apis.item.getAll}/?page=${page}&size=${size}`);
+  getAll = (page, size) => this.http.get(`${apiHost}${apis.item.getAll}/?page=${page}&size=${size}`);
   
   
 }

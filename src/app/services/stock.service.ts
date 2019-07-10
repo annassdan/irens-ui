@@ -16,7 +16,7 @@ export class StockService {
 
   getById = (id) => this.http.get(`${apiHost}${apis.stock.getById}/${id}`);
 
-  getAll = (page, size) => this.http.delete(`${apiHost}${apis.stock.getAll}/?page=${page}&size=${size}`);
+  getAll = (page, size) => this.http.get(`${apiHost}${apis.stock.getAll}/?page=${page}&size=${size}`);
   
   
 }

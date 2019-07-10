@@ -16,7 +16,7 @@ export class BankService {
 
   getById = (id) => this.http.get(`${apiHost}${apis.bank.getById}/${id}`);
 
-  getAll = (page, size) => this.http.delete(`${apiHost}${apis.bank.getAll}/?page=${page}&size=${size}`);
+  getAll = (page, size) => this.http.get(`${apiHost}${apis.bank.getAll}/?page=${page}&size=${size}`);
 
 
 }

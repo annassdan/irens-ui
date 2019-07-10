@@ -15,6 +15,6 @@ export class TransactionService {
 
   getById = (id) => this.http.get(`${apiHost}${apis.transaction.getById}/${id}`);
 
-  getAll = (page, size) => this.http.delete(`${apiHost}${apis.transaction.getAll}/?page=${page}&size=${size}`);
+  getAll = (page, size) => this.http.get(`${apiHost}${apis.transaction.getAll}/?page=${page}&size=${size}`);
   
 }

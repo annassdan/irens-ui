@@ -16,6 +16,6 @@ export class PeopleService {
 
   getById = (id) => this.http.get(`${apiHost}${apis.people.getById}/${id}`);
 
-  getAll = (page, size) => this.http.delete(`${apiHost}${apis.people.getAll}/?page=${page}&size=${size}`);
+  getAll = (page, size) => this.http.get(`${apiHost}${apis.people.getAll}/?page=${page}&size=${size}`);
   
 }
