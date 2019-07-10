@@ -1,0 +1,90 @@
+<div style="bottom: 0px" [formGroup]="config.form">
+  <mat-form-field [formGroup]="getFormGroupOfTarget()" [appearance]="appearance">
+
+    <mat-label>{{placeholder}}</mat-label>
+    <input  type="text" [placeholder]="placeholder"
+            #trigger
+           [formControl]="getFormControlOfTarget()"
+           aria-label="Item" matInput [matAutocompleteBhkDirective]="autoItem"
+           appAutocompleteTrigger
+           (whenValueSelected)="onValueSelected($event)"
+           [configs]="config"
+           [autocompleteTarget]="autoItem"
+           [required]="config.required"
+           (autoLazyInitializationCompleted)="initializingAutocomplteLazy($event)">
+
+    <button
+      *ngIf="useClearButton() && !isControlValueEmpty() && getFormControlOfTarget().enabled"
+      matSuffix
+      matTooltip="Bersihkan"
+      (click)="clear()"
+      mat-icon-button>
+      <mat-icon color="warn">
+        close
+      </mat-icon>
+    </button>
+
+    <div>
+      <mat-autocomplete
+        #autoItem="matAutocomplete" [displayWith]="displayFn">
+        <!--<mat-progress-bar-->
+        <!--style="position: absolute;border-radius: 0px; height: 9px; margin-top: -1px; "-->
+        <!--color="primary"-->
+        <!--mode="indeterminate"></mat-progress-bar>-->
+
+        <div *ngIf="autocompleteLazy.isFetchingHasStarted; else mainContent">
+          <mat-option>
+            <div class="text-waiting-1 text-waiting">
+              <div class=" text-waiting-indeterminate-1"></div>
+            </div>
+          </mat-option>
+          <mat-option>
+            <div class="text-waiting-2 text-waiting">
+              <div class=" text-waiting-indeterminate-2"></div>
+            </div>
+          </mat-option>
+          <mat-option>
+            <div class="text-waiting-3 text-waiting">
+              <div class=" text-waiting-indeterminate-1"></div>
+            </div>
+          </mat-option>
+          <mat-option>
+            <div class="text-waiting-4 text-waiting">
+              <div class=" text-waiting-indeterminate-1"></div>
+            </div>
+          </mat-option>
+          <mat-option>
+            <div class="text-waiting-5 text-waiting">
+              <div class=" text-waiting-indeterminate-1"></div>
+            </div>
+          </mat-option>
+        </div>
+
+
+        <ng-template #mainContent>
+
+          <mat-option [value]="v"
+                      *ngFor="let v of autocompleteLazy.displayedData">
+            <span>{{displayingOnList(v)}}</span>
+          </mat-option>
+
+          <mat-divider></mat-divider>
+
+
+          <mat-option class="lebih-banyak" *ngIf="!autocompleteLazy.isLast" [value]="null">
+            Muat Lebih Banyak....
+          </mat-option>
+
+        </ng-template>
+
+
+      </mat-autocomplete>
+    </div>
+
+
+    <mat-error [ngClass]="isOutlineAppearance() ? 'error-to-left' : ''" *ngIf="config.required">
+      Tidak boleh kososng
+    </mat-error>
+
+  </mat-form-field>
+</div>
