@@ -1,0 +1,55 @@
+@import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
+@import "~bootstrap/dist/css/bootstrap.css";
+
+
+html, body {
+  height: 100%;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+.mat-form-field#jumlah {
+  width: 35%;
+  margin-right: 15px;
+}
+
+.mat-form-field#tanggal {
+  width: 60%;
+}
+
+.mat-tab-labels {
+  margin-top: 60px;
+  background: #49ad9d ;
+}
+
+.mat-tab-label {
+  color: white;
+}
+
+
+
+.example-button-row button,
+.example-button-row a {
+  margin-right: 8px;
+}
+
+.warning-snackbar {
+  background: #EAE3EA !important;
+  color: black;
+}
+
+.success-snackbar {
+  background: #9CCC65 !important;
+  color: black;
+}
+
+.error-snackbar {
+  background: #FF5722 !important;
+  color: black;
+}
+
+.button {
+  padding-bottom: 25px;
+}

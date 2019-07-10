@@ -1,0 +1,32 @@
+<div class="container pt-5 pb-5">
+  <div class="row">
+    <div class="col-md-4">
+      <mat-form-field appearance="outline">
+        <mat-label>Nomor Rekening</mat-label>
+        <input matInput [(ngModel)]="no_rek">
+      </mat-form-field>
+    </div>
+    <div class="col-md-4">
+      <mat-form-field appearance="outline">
+        <mat-label>Nama Bank</mat-label>
+        <input matInput [(ngModel)]="nama_bank">
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <mat-form-field appearance="outline">
+        <mat-label>Id Client</mat-label>
+        <input matInput [(ngModel)]="id_client">
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8">
+      <div class="example-button-row float-right">
+        <button mat-raised-button (click)="clearAll()">Batal</button>
+        <button mat-raised-button color="primary" (click)="saveButton()">Simpan</button>
+      </div>
+    </div>
+  </div>
+</div>

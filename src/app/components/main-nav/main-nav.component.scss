@@ -1,0 +1,60 @@
+
+.example-icon {
+  padding: 0 14px;
+  color: black;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+::ng-deep.mat-menu-content:not(:empty) {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  background: #eae3ea !important;
+}
+
+
+.mat-toolbar {
+  background: #00695c;
+  color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  width: 100% !important;
+  padding: 0 32px;
+}
+
+button:focus {
+  outline: 0 !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+button.mat-menu-item {
+  width: 200px;
+}
+
+.mat-menu-item[disabled], .mat-menu-item[disabled]::after {
+  color: black;
+}
+//
+//.mat-tab-group{
+//  position: sticky;
+//  top: 56px;
+//  left: 0;
+//  z-index: 4;
+//  width: 100%  !important;
+//  margin-bottom: 65px !important;
+//}
+
+.row {
+  padding: 0 16px !important;
+}
+
+::ng-deep.mat-ink-bar {
+  height: 4px !important;
+  background: #9575cd !important;
+}
+
