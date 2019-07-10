@@ -1,8 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {MatSnackBar} from '@angular/material';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {MatPaginator, MatSnackBar, MatSort} from '@angular/material';
 import {errorSnackBar, successSnackBar} from '../../../shared/constants';
 import {BankService} from '../../../services/bank.service';
 import {bankErrorStateMatchers, bankForm} from '../../../inits/bank-init';
+import {Extra} from '../../../shared/extra';
+import {AppTableDataSource} from '../../../shared/app-table-data-source';
 
 @Component({
   selector: 'app-master-bank',
@@ -14,15 +16,46 @@ export class MasterBankComponent implements OnInit {
   page = 0;
   size = 10;
 
-
   matchers = bankErrorStateMatchers;
   formUtama = bankForm();
+
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+  gettingData = false;
+  ex = new Extra();
+  selectedValue;
+  dataSource: AppTableDataSource;
+  receivedData: any;
+  tableConf = () => { return { id: 'bankId', page: this.page, size: this.size }};
+  totalElements = () => this.receivedData ? this.receivedData.totalElements : 0;
+  tableProperties = {
+    displayedColumns: ['bankId', 'bankName'],
+    displayedHeaders: ['No', 'Nama Bank'],
+    levelsOnData: [['bankId'], ['bankName']]
+  };
+
+
+
 
   constructor(private masterBank: BankService,
               public snackBar: MatSnackBar) { }
 
-  ngOnInit() {
+  onDataSizeChanged(pagination) {
+    if (pagination.pageIndex !== this.page) {
+      this.page = pagination.pageIndex;
+      this.size = pagination.pageSize;
+    } else {
+      this.page = 0;
+      this.size = pagination.pageSize;
+    }
+    this.get();
+  }
 
+
+
+  ngOnInit() {
+    this.get();
   }
 
   post(a) {
@@ -38,7 +71,8 @@ export class MasterBankComponent implements OnInit {
   get() {
     this.masterBank.getAll(this.page, this.size).subscribe(
       (v: any[]) => {
-        console.log(v)
+        this.receivedData = v;
+        this.dataSource = new AppTableDataSource((<any[]>v['content']), null, this.paginator, this.sort);
       },
       (error1) => errorSnackBar(this.snackBar, 'GAGAL'),
       () => {

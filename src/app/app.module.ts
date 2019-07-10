@@ -69,6 +69,9 @@ import {AutocompleteTriggerDirective} from './shared/directives/autocomplete-tri
 
     ReactiveFormsModule,
     MatAutocompleteModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
 
 
     BrowserAnimationsModule,

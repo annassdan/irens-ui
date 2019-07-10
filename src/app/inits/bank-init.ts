@@ -50,8 +50,8 @@ export function bankForm(
   validators = bankValidators
 ) {
   return new FormBuilder().group({
-    bankId: generateFormControlConfig('jenisBerat', init, disables, validators, forGeneralization),
-    bankName: generateFormControlConfig('jenisBerat', init, disables, validators, forGeneralization)
+    bankId: generateFormControlConfig('bankId', init, disables, validators, forGeneralization),
+    bankName: generateFormControlConfig('bankName', init, disables, validators, forGeneralization)
   });
 }
 /* End of Form Models */
