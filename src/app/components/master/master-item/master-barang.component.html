@@ -1,15 +1,12 @@
-<div class="container pt-5 pb-5">
+<div class="container pt-5 pb-5" [formGroup]="formUtama">
   <div class="row">
     <div class="col-md-4">
       <mat-form-field appearance="outline">
-        <mat-label>Nama Barang</mat-label>
-        <input matInput>
-      </mat-form-field>
-    </div>
-    <div class="col-md-4">
-      <mat-form-field appearance="outline">
-        <mat-label>Harga Barang</mat-label>
-        <input matInput>
+        <mat-label>Nama item</mat-label>
+        <input matInput formControlName="itemName" required [errorStateMatcher]="matchers.itemName.matcher" >
+        <mat-error *ngIf="formUtama.get('itemName')">
+          {{matchers.itemName.message}}
+        </mat-error>
       </mat-form-field>
     </div>
   </div>
@@ -17,7 +14,10 @@
     <div class="col-md-8">
       <div class="example-button-row float-right">
         <button mat-raised-button>Batal</button>
-        <button mat-raised-button color="primary">Simpan</button>
+        <button mat-raised-button
+                [disabled]="formUtama.invalid"
+                (click)="post(formUtama.getRawValue())"
+                color="primary" >Simpan</button>
       </div>
     </div>
   </div>

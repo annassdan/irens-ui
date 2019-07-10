@@ -1,23 +1,41 @@
-<div class="container pt-5 pb-5">
+<div class="container pt-5 pb-5" [formGroup]="formUtama">
   <div class="row">
     <div class="col-md-4">
       <mat-form-field appearance="outline">
-        <mat-label>Nama Pembeli</mat-label>
-        <input matInput>
+        <mat-label>Nama Customer</mat-label>
+        <input matInput formControlName="customerName" required [errorStateMatcher]="matchers.customerName.matcher" >
+        <mat-error *ngIf="formUtama.get('customerName')">
+          {{matchers.customerName.message}}
+        </mat-error>
       </mat-form-field>
     </div>
     <div class="col-md-4">
       <mat-form-field appearance="outline">
-        <mat-label>Alamat</mat-label>
-        <input matInput>
+        <mat-label>Alamat Customer</mat-label>
+        <input matInput formControlName="customerAddress" required [errorStateMatcher]="matchers.customerAddress.matcher" >
+        <mat-error *ngIf="formUtama.get('customerAddress')">
+          {{matchers.customerAddress.message}}
+        </mat-error>
       </mat-form-field>
     </div>
   </div>
   <div class="row">
     <div class="col-md-4">
       <mat-form-field appearance="outline">
-        <mat-label>No. Handphone</mat-label>
-        <input matInput>
+        <mat-label>No.Hp Customer</mat-label>
+        <input matInput formControlName="customerPhone" required [errorStateMatcher]="matchers.customerPhone.matcher" >
+        <mat-error *ngIf="formUtama.get('customerPhone')">
+          {{matchers.customerPhone.message}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="col-md-4">
+      <mat-form-field appearance="outline">
+        <mat-label>Gaji Customer</mat-label>
+        <input matInput formControlName="salary" required [errorStateMatcher]="matchers.salary.matcher" >
+        <mat-error *ngIf="formUtama.get('salary')">
+          {{matchers.salary.message}}
+        </mat-error>
       </mat-form-field>
     </div>
   </div>
@@ -25,7 +43,10 @@
     <div class="col-md-8">
       <div class="example-button-row float-right">
         <button mat-raised-button>Batal</button>
-        <button mat-raised-button color="primary">Simpan</button>
+        <button mat-raised-button
+                [disabled]="formUtama.invalid"
+                (click)="post(formUtama.getRawValue())"
+                color="primary" >Simpan</button>
       </div>
     </div>
   </div>
